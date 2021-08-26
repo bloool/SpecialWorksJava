@@ -1,14 +1,14 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "Special Works Java"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "spec-j"
 
 #your name
-author: "You"
+author: "blool"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "spec.SpecialWorks"
 
 #the mod description as seen in the mod dialog
 description: "A Mindustry Java mod template."
@@ -19,3 +19,4 @@ version: 1.0
 #the minimum game build required to run this mod
 minGameVersion: 129
 
+java: true
