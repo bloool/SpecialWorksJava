@@ -7,9 +7,9 @@ import mindustry.world.blocks.defense.turrets.ItemTurret;
 
 public class AcceleratingTurret extends ItemTurret {
 
-    public float coolDownSpeed = 0.01f;
     public float accSpeed = 0.05f;
     public int accCap = 20;
+    public float coolDownSpeed = accSpeed / 5f;
 
     public AcceleratingTurret(String name){
         super(name);
