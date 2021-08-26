@@ -1,16 +1,12 @@
 package spec.entities.bullet;
 
+import arc.math.Mathf;
+import mindustry.content.Fx;
 import mindustry.entities.Units;
 import mindustry.entities.bullet.BasicBulletType;
-import arc.graphics.*;
-import arc.graphics.g2d.*;
-import arc.math.*;
-import arc.util.*;
-import mindustry.content.*;
-import mindustry.entities.bullet.*;
-import mindustry.gen.*;
-
-import static arc.util.Reflect.cons;
+import mindustry.gen.Bullet;
+import mindustry.gen.Hitboxc;
+import mindustry.gen.Unit;
 
 public class RicochetBulletType extends BasicBulletType {
     public float ricochetRange = 120;

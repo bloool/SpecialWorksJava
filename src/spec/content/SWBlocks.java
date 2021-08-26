@@ -2,6 +2,7 @@ package spec.content;
 
 import arc.Core;
 import arc.graphics.g2d.Draw;
+import arc.util.Log;
 import mindustry.content.*;
 import mindustry.ctype.*;
 import mindustry.entities.bullet.BasicBulletType;
@@ -9,7 +10,9 @@ import mindustry.gen.Sounds;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.meta.BuildVisibility;
 import spec.entities.bullet.ClusterArtilleryBulletType;
+import spec.entities.bullet.KillBulletType;
 import spec.entities.bullet.RicochetBulletType;
 import spec.libs.dynamicEffects;
 import spec.world.blocks.denfese.turret.AcceleratingTurret;
@@ -33,8 +36,8 @@ public class SWBlocks implements ContentList {
             {
             requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
             ammo(
-                    Items.graphite, SWBullets.clusterBomb,
-                    Items.surgeAlloy, SWBullets.eletricBomb
+                Items.graphite, SWBullets.clusterBomb,
+                Items.surgeAlloy, SWBullets.eletricBomb
             );
 
             targetAir = false;
@@ -66,8 +69,8 @@ public class SWBlocks implements ContentList {
         pointBlank = new ItemTurret("point-blank"){{
             requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
             ammo(
-                    Items.graphite, SWBullets.clusterBombDense,
-                    Items.surgeAlloy, SWBullets.eletricBombDense
+                Items.graphite, SWBullets.clusterBombDense,
+                Items.surgeAlloy, SWBullets.eletricBombDense
             );
 
             targetAir = false;
@@ -91,15 +94,15 @@ public class SWBlocks implements ContentList {
         gale = new ItemTurret("gale"){{
             requirements(Category.turret, with(Items.copper, 35), true);
             ammo(
-                    Items.metaglass, new RicochetBulletType(){{
-                        sprite = "large-bomb";
-                        width = 8;
-                        height = 32;
-                        shrinkY = 0;
-                        speed = 5;
-                        damage = 30;
-                        trailLength = 5;
-                    }}
+                Items.metaglass, new RicochetBulletType(){{
+                    sprite = "large-bomb";
+                    width = 8;
+                    height = 32;
+                    shrinkY = 0;
+                    speed = 5;
+                    damage = 30;
+                    trailLength = 5;
+                }}
             );
 
             size = 3;
@@ -120,13 +123,12 @@ public class SWBlocks implements ContentList {
         frog = new AcceleratingTurret("frog"){{
             requirements(Category.turret, with(Items.copper, 35), true);
             ammo(
-                    Items.copper, new BasicBulletType(){{
-                        width = 16;
-                        height = 16;
-                        shrinkY = 0;
-                        speed = 5;
-                        damage = 30;
-                    }}
+                Items.copper, new KillBulletType(4, 10000){{
+                    width = 16;
+                    height = 16;
+                    shrinkY = 0;
+                    onKill(() -> Log.info("h"));
+                }}
             );
 
             size = 3;
@@ -139,6 +141,8 @@ public class SWBlocks implements ContentList {
             health = 250;
             inaccuracy = 2f;
             rotateSpeed = 10f;
+
+            buildVisibility = BuildVisibility.sandboxOnly;
 
             limitRange();
         }};

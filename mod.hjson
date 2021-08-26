@@ -11,7 +11,7 @@ author: "blool"
 main: "spec.SpecialWorks"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "my mod, special works, now on java because i'm learning it"
 
 #the mod version
 version: 1.0
