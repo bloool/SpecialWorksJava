@@ -88,7 +88,7 @@ public class SWBlocks implements ContentList {
             }
         };
 
-        pointBlank = new ItemTurret("point-blank"){{
+        pointBlank = new BarrelTurret("point-blank"){{
             requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
             ammo(
                     Items.graphite, SWBullets.clusterBombDense,
