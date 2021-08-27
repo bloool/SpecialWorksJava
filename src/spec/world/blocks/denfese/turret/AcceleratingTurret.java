@@ -1,9 +1,19 @@
 package spec.world.blocks.denfese.turret;
 
+import arc.graphics.Color;
 import arc.math.Mathf;
-import arc.util.Log;
 import arc.util.Time;
+import mindustry.graphics.Pal;
+import mindustry.ui.Bar;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.meta.*;
+import mindustry.ui.*;
+import arc.*;
+import arc.scene.ui.layout.*;
+import arc.struct.*;
+import arc.util.io.*;
+
+import static arc.Core.bundle;
 
 public class AcceleratingTurret extends ItemTurret {
 
@@ -17,6 +27,14 @@ public class AcceleratingTurret extends ItemTurret {
 
     public class AcceleratingTurretBuild extends ItemTurretBuild{
         public float accAmount; //making it a increasing value that gets added to local reload var instead of a decreasing global reload time var
+
+        @Override
+        public void displayBars(Table bars){
+            super.displayBars(bars);
+
+            bars.add(new Bar("stat.accelerationAmount", Pal.ammo, () -> accAmount / accCap)).growX();
+            bars.row();
+        }
 
         @Override
         public void updateTile(){

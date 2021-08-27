@@ -1,8 +1,5 @@
 package spec.content;
 
-import arc.Core;
-import arc.graphics.g2d.Draw;
-import arc.util.Log;
 import mindustry.content.*;
 import mindustry.ctype.*;
 import mindustry.gen.Sounds;
@@ -16,6 +13,7 @@ import spec.entities.bullet.RicochetBulletType;
 import spec.libs.dynamic;
 import spec.libs.dynamicEffects;
 import spec.world.blocks.denfese.turret.AcceleratingTurret;
+import spec.world.blocks.denfese.turret.BarrelTurret;
 
 import static mindustry.type.ItemStack.*;
 
@@ -63,7 +61,7 @@ public class SWBlocks implements ContentList {
         }};
 
         //start region artillery
-        ridge = new ItemTurret("ridge"){
+        ridge = new BarrelTurret("ridge"){
             {
             requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
             ammo(
@@ -79,7 +77,7 @@ public class SWBlocks implements ContentList {
             reloadTime = 80f;
             ammoUseEffect = Fx.casing4;
             velocityInaccuracy = 0.05f;
-            restitution = 0.02f;
+            restitution = 0.03f;
             recoilAmount = 6f;
             shootShake = 3f;
             range = 290f;
