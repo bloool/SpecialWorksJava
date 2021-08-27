@@ -44,7 +44,7 @@ public class BarrelTurret extends ItemTurret {
 
         @Override
         public void draw(){
-            //TODO add heat drawer and fix the crash when open info menu, also see if the crash happens with accelerating turret
+            //TODO add heat drawer
 
             Draw.rect(baseRegion, x, y);
             Draw.color();

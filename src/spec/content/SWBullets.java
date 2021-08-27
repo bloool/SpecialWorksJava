@@ -1,96 +1,171 @@
 package spec.content;
 
-import mindustry.content.*;
-import mindustry.ctype.*;
-import mindustry.entities.bullet.*;
-import mindustry.gen.Sounds;
-import mindustry.type.*;
-import mindustry.world.*;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
-import spec.entities.bullet.ClusterArtilleryBulletType;
-import spec.entities.bullet.RicochetBulletType;
-import spec.libs.dynamicEffects;
-import spec.world.blocks.denfese.turret.AcceleratingTurret;
-
-import static mindustry.type.ItemStack.*;
+import mindustry.content.Fx;
+import mindustry.content.StatusEffects;
+import mindustry.ctype.ContentList;
+import mindustry.entities.bullet.BulletType;
+import mindustry.graphics.Pal;
+import spec.entities.bullet.ClusterBulletType;
 
 public class SWBullets implements ContentList {
     public static BulletType
 
-    clusterBomb, clusterBombDense,
-    eletricBomb, eletricBombDense
-
+    clusterLance, clusterLanceDense,
+    fireLance, fireLanceDense,
+    pierceLance, pierceLanceDense,
+    lightLance, lightLanceDense
     ;
 
     @Override
     public void load(){
-        clusterBomb = new ClusterArtilleryBulletType(3f, 20, "shell"){{
-            hitEffect = Fx.flakExplosion;
-            knockback = 0.8f;
+
+        //normal artillery
+        clusterLance = new ClusterBulletType(5f, 200f){{
+            knockback = 5f;
             lifetime = 80f;
-            width = height = 26f;
-            collidesTiles = false;
-            splashDamageRadius = 18f * 0.75f;
-            splashDamage = 60;
+            width = 8;
+            height = 26f;
             despawnEffect = Fx.flakExplosion;
+            trailChance = 0.5f;
 
-            explosionAmount = 20;
-            explosionRange = 20f;
+            explosionAmount = 10;
+            explosionRange = 15f;
             explosionDamage = 60f;
-            explosionRadius = splashDamageRadius;
+            explosionRadius = 18f * 0.75f;
             explosionEffect = despawnEffect;
         }};
 
-        clusterBombDense = new ClusterArtilleryBulletType(3f, 20, "shell"){{
-            hitEffect = Fx.flakExplosion;
-            knockback = 0.8f;
+        fireLance = new ClusterBulletType(5f, 200f){{
+            knockback = 5f;
             lifetime = 80f;
-            width = height = 26f;
-            collidesTiles = false;
-            splashDamageRadius = 18f * 0.75f;
-            splashDamage = 60;
-            despawnEffect = dynamicEffects.circleBoom(splashDamageRadius, backColor);
+            width = 8;
+            height = 26f;
+            despawnEffect = Fx.flakExplosion;
+            trailChance = 0.8f;
+            status = StatusEffects.burning;
+            statusDuration = 60f * 12f;
+            frontColor = Pal.lightishOrange;
+            backColor = Pal.lightOrange;
+            makeFire = true;
+            trailEffect = Fx.incendTrail;
+            ammoMultiplier = 4f;
 
-            explosionAmount = 20;
-            explosionRange = 20f;
+            explosionAmount = 10;
+            explosionRange = 15f;
             explosionDamage = 60f;
-            explosionRadius = splashDamageRadius;
+            explosionRadius = 18f * 0.75f;
             explosionEffect = despawnEffect;
         }};
 
-        clusterBombDense = new ClusterArtilleryBulletType(4f, 20, "shell"){{
-            hitEffect = Fx.flakExplosion;
-            knockback = 0.8f;
+        pierceLance = new ClusterBulletType(8f, 220f){{
+            knockback = 8f;
             lifetime = 80f;
-            width = height = 24f;
-            collidesTiles = false;
-            splashDamageRadius = 35f * 0.75f;
-            splashDamage = 52f;
-            despawnEffect = Fx.massiveExplosion;
+            width = 9;
+            height = 32f;
+            despawnEffect = Fx.flakExplosion;
+            reloadMultiplier = 0.8f;
+            trailWidth = 2;
+            trailLength = 6;
+            pierce = true;
+            pierceCap = 3;
 
-            explosionAmount = 12;
-            explosionDelay = 2;
-            explosionRange = 35f;
-            explosionDamage = 500f;
-            explosionRadius = splashDamageRadius;
+            explosionAmount = 3;
+            explosionRange = 15f;
+            explosionDamage = 60f;
+            explosionRadius = 18f * 0.75f;
             explosionEffect = despawnEffect;
         }};
 
-        eletricBombDense = new ClusterArtilleryBulletType(3f, 20, "shell"){{
-            hitEffect = Fx.flakExplosion;
-            knockback = 0.8f;
+        lightLance = new ClusterBulletType(7f, 100f){{
+            knockback = 1f;
             lifetime = 80f;
-            width = height = 24f;
-            collidesTiles = false;
-            splashDamageRadius = 35f * 0.75f;
-            splashDamage = 52f;
-            despawnEffect = dynamicEffects.circleBoom(splashDamageRadius, backColor);
+            reloadMultiplier = 2;
+            ammoMultiplier = 2;
+            width = 7;
+            height = 23f;
+            despawnEffect = Fx.flakExplosion;
+            trailChance = 0.2f;
 
-            explosionAmount = 12;
-            explosionDelay = 2;
-            explosionRange = 35f;
-            explosionDamage = 500f;
-            explosionRadius = splashDamageRadius;
+            explosionAmount = 5;
+            explosionRange = 15f;
+            explosionDamage = 60f;
+            explosionRadius = 18f * 0.75f;
+            explosionEffect = despawnEffect;
+        }};
+
+
+        //dense artillery
+        clusterLanceDense = new ClusterBulletType(5f, 200f){{
+            knockback = 3f;
+            lifetime = 80f;
+            width = 11;
+            height = 29f;
+            despawnEffect = Fx.blastExplosion;
+            trailChance = 0.5f;
+
+            explosionAmount = 8;
+            explosionRange = 20f;
+            explosionDamage = 150f;
+            explosionRadius = 25f * 0.75f;
+            explosionEffect = despawnEffect;
+        }};
+
+        fireLanceDense = new ClusterBulletType(5f, 200f){{
+            knockback = 5f;
+            lifetime = 80f;
+            width = 11;
+            height = 29f;
+            despawnEffect = Fx.blastExplosion;
+            trailChance = 0.8f;
+            status = StatusEffects.burning;
+            statusDuration = 60f * 12f;
+            frontColor = Pal.lightishOrange;
+            backColor = Pal.lightOrange;
+            makeFire = true;
+            trailEffect = Fx.incendTrail;
+            ammoMultiplier = 4f;
+
+            explosionAmount = 8;
+            explosionRange = 20f;
+            explosionDamage = 150f;
+            explosionRadius = 25f * 0.75f;
+            explosionEffect = despawnEffect;
+        }};
+
+        pierceLanceDense = new ClusterBulletType(9f, 300f){{
+            knockback = 4f;
+            reloadMultiplier = 0.8f;
+            lifetime = 80f;
+            width = 11;
+            height = 35f;
+            despawnEffect = Fx.flakExplosion;
+            trailWidth = 2;
+            trailLength = 6;
+            pierce = true;
+            pierceCap = 5;
+
+            explosionAmount = 5;
+            explosionRange = 15f;
+            explosionDamage = 150f;
+            explosionRadius = 25f * 0.75f;
+            explosionEffect = despawnEffect;
+        }};
+
+        lightLanceDense = new ClusterBulletType(7f, 100f){{
+            knockback = 1f;
+            lifetime = 80f;
+            reloadMultiplier = 2;
+            ammoMultiplier = 2;
+            width = 8;
+            height = 26f;
+            despawnEffect = Fx.flakExplosion;
+            trailChance = 0.2f;
+
+            explosionAmount = 40;
+            explosionDelay = 1f;
+            explosionRange = 15f;
+            explosionDamage = 75f;
+            explosionRadius = 25f * 0.75f;
             explosionEffect = despawnEffect;
         }};
     }

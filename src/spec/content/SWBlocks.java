@@ -23,7 +23,7 @@ public class SWBlocks implements ContentList {
             //deez
             gale,
             //artillery
-            pointBlank, ridge,
+            shogun, ridge,
 
             frog; //turret for testing
 
@@ -65,8 +65,10 @@ public class SWBlocks implements ContentList {
             {
             requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
             ammo(
-                    Items.graphite, SWBullets.clusterBomb,
-                    Items.surgeAlloy, SWBullets.eletricBomb
+                    Items.graphite, SWBullets.clusterLance,
+                    Items.pyratite, SWBullets.fireLance,
+                    Items.thorium, SWBullets.pierceLance,
+                    Items.metaglass, SWBullets.lightLance
             );
 
             targetAir = false;
@@ -76,7 +78,6 @@ public class SWBlocks implements ContentList {
             inaccuracy = 3f;
             reloadTime = 80f;
             ammoUseEffect = Fx.casing4;
-            velocityInaccuracy = 0.05f;
             restitution = 0.03f;
             recoilAmount = 6f;
             shootShake = 3f;
@@ -85,24 +86,28 @@ public class SWBlocks implements ContentList {
 
             health = 130 * size * size;
             shootSound = Sounds.artillery;
+
+            limitRange();
             }
         };
 
-        pointBlank = new BarrelTurret("point-blank"){{
+        shogun = new BarrelTurret("shogun"){{
             requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
             ammo(
-                    Items.graphite, SWBullets.clusterBombDense,
-                    Items.surgeAlloy, SWBullets.eletricBombDense
+                    Items.graphite, SWBullets.clusterLanceDense,
+                    Items.pyratite, SWBullets.fireLanceDense,
+                    Items.thorium, SWBullets.pierceLanceDense,
+                    Items.metaglass, SWBullets.lightLanceDense
             );
 
             targetAir = false;
             size = 4;
             shots = 3;
             burstSpacing = 2;
-            inaccuracy = 12f;
+            inaccuracy = 5f;
             reloadTime = 80f;
             ammoUseEffect = Fx.casing3Double;
-            velocityInaccuracy = 0.3f;
+            velocityInaccuracy = 0.1f;
             restitution = 0.02f;
             recoilAmount = 6f;
             shootShake = 6f;
@@ -111,6 +116,8 @@ public class SWBlocks implements ContentList {
 
             health = 130 * size * size;
             shootSound = Sounds.artillery;
+
+            limitRange();
         }};
         //end region
 
