@@ -2,7 +2,7 @@ package spec;
 
 import arc.*;
 import arc.util.*;
-import mindustry.ctype.ContentList;
+import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
@@ -10,8 +10,8 @@ import spec.content.*;
 
 public class SpecialWorks extends Mod{
     private final ContentList[] content = {
-            new SWBullets(),
-            new SWBlocks(),
+    new SWBullets(),
+    new SWBlocks(),
     };
 
     public SpecialWorks(){

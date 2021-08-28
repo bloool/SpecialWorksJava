@@ -1,20 +1,18 @@
 package spec.content;
 
-import mindustry.content.Fx;
-import mindustry.content.StatusEffects;
-import mindustry.ctype.ContentList;
-import mindustry.entities.bullet.BulletType;
-import mindustry.graphics.Pal;
-import spec.entities.bullet.ClusterBulletType;
+import mindustry.content.*;
+import mindustry.ctype.*;
+import mindustry.entities.bullet.*;
+import mindustry.graphics.*;
+import spec.entities.bullet.*;
 
-public class SWBullets implements ContentList {
+public class SWBullets implements ContentList{
     public static BulletType
 
     clusterLance, clusterLanceDense,
     fireLance, fireLanceDense,
     pierceLance, pierceLanceDense,
-    lightLance, lightLanceDense
-    ;
+    lightLance, lightLanceDense;
 
     @Override
     public void load(){

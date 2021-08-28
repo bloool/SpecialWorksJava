@@ -1,11 +1,11 @@
 package spec.libs;
 
-import mindustry.entities.Effect;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
-import mindustry.graphics.Drawf;
+import mindustry.entities.*;
+import mindustry.graphics.*;
 
-import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Draw.color;
 import static arc.graphics.g2d.Lines.stroke;
 
 public class dynamicEffects{

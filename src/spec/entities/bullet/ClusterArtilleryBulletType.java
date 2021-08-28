@@ -1,30 +1,28 @@
 package spec.entities.bullet;
 
-import arc.graphics.g2d.*;
-import arc.math.Mathf;
-import arc.util.Log;
-import arc.util.Time;
+import arc.math.*;
+import arc.util.*;
 import mindustry.content.*;
-import mindustry.entities.Effect;
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
-import spec.libs.dynamic;
+import spec.libs.*;
 
-public class ClusterArtilleryBulletType extends ArtilleryBulletType {
+public class ClusterArtilleryBulletType extends ArtilleryBulletType{
     /** The amount of explosions */
     public int explosionAmount = 12;
     /** Delay between each explosion */
     public float explosionDelay = 2f;
     /** damage */
     public float explosionDamage = 40f;
-    /** how far from the despawn point they can spawn*/
+    /** how far from the despawn point they can spawn */
     public float explosionRange = 35;
-    /** how big is the explosion splash damage radius*/
+    /** how big is the explosion splash damage radius */
     public float explosionRadius = 30;
     /** the explosion effect */
     public Effect explosionEffect = Fx.massiveExplosion;
 
-    public ClusterArtilleryBulletType(float speed, float damage, String bulletSprite) {
+    public ClusterArtilleryBulletType(float speed, float damage, String bulletSprite){
         super(speed, damage, bulletSprite);
     }
 

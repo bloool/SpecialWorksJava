@@ -1,16 +1,13 @@
 package spec.world.blocks.denfese.turret;
 
-import arc.Core;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.TextureRegion;
-import arc.util.Tmp;
-import mindustry.graphics.Drawf;
-import mindustry.graphics.Layer;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
+import arc.graphics.g2d.*;
+import arc.util.*;
+import mindustry.graphics.*;
+import mindustry.world.blocks.defense.turrets.*;
 
 import static arc.Core.atlas;
 
-public class BarrelTurret extends ItemTurret {
+public class BarrelTurret extends ItemTurret{
     public float barrelRecoilMultiplier = 1.5f;
     public boolean barrelTop = false;
     public TextureRegion turret, outline, barrel, barrelOutline, full;
@@ -34,8 +31,8 @@ public class BarrelTurret extends ItemTurret {
     @Override
     public TextureRegion[] icons(){
         return new TextureRegion[]{
-                baseRegion,
-                atlas.find(name + "-full")
+        baseRegion,
+        atlas.find(name + "-full")
         };
     }
 

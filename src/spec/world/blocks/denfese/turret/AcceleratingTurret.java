@@ -1,21 +1,13 @@
 package spec.world.blocks.denfese.turret;
 
-import arc.graphics.Color;
-import arc.math.Mathf;
-import arc.util.Time;
-import mindustry.graphics.Pal;
-import mindustry.ui.Bar;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
-import mindustry.world.meta.*;
-import mindustry.ui.*;
-import arc.*;
+import arc.math.*;
 import arc.scene.ui.layout.*;
-import arc.struct.*;
-import arc.util.io.*;
+import arc.util.*;
+import mindustry.graphics.*;
+import mindustry.ui.*;
+import mindustry.world.blocks.defense.turrets.*;
 
-import static arc.Core.bundle;
-
-public class AcceleratingTurret extends ItemTurret {
+public class AcceleratingTurret extends ItemTurret{
 
     public float accSpeed = 0.05f;
     public int accCap = 20;
@@ -39,14 +31,14 @@ public class AcceleratingTurret extends ItemTurret {
         @Override
         public void updateTile(){
             // go back to zero when not shooting
-            if(!isShooting())accAmount = Mathf.lerpDelta(accAmount, 0, coolDownSpeed * Time.delta);
+            if(!isShooting()) accAmount = Mathf.lerpDelta(accAmount, 0, coolDownSpeed * Time.delta);
 
             super.updateTile();
         }
 
         @Override
         public void updateShooting(){
-            if(accAmount < accCap)accAmount += accSpeed * Time.delta * baseReloadSpeed();
+            if(accAmount < accCap) accAmount += accSpeed * Time.delta * baseReloadSpeed();
             reload += accAmount;
 
             super.updateShooting();

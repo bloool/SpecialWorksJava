@@ -1,11 +1,11 @@
 package spec.libs;
 
-import mindustry.entities.Effect;
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 
 public class dynamic{
-    public static BulletType explosion(float damage2, float radius, Effect effect) {
-        return new BombBulletType(0f, 0f, "clear") {{
+    public static BulletType explosion(float damage2, float radius, Effect effect){
+        return new BombBulletType(0f, 0f, "clear"){{
             despawnEffect = effect;
             hitEffect = effect;
             lifetime = 10f;
