@@ -15,6 +15,7 @@ import spec.entities.bullet.*;
 import spec.libs.*;
 import spec.world.blocks.denfese.turret.*;
 import spec.world.blocks.denfese.turret.SpatialSpawnerTurret.*;
+import spec.world.draw.*;
 import spec.world.meta.*;
 
 import static mindustry.type.ItemStack.with;
@@ -65,7 +66,7 @@ public class SWBlocks implements ContentList{
         }};
 
         //start region artillery
-        ridge = new BarrelTurret("ridge"){
+        ridge = new SWItemTurret("ridge"){
             {
                 requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
                 ammo(
@@ -89,6 +90,9 @@ public class SWBlocks implements ContentList{
 
                 health = 130 * size * size;
                 shootSound = Sounds.artillery;
+
+                barrelDrawer = new SingleBarrelDrawer();
+                outlineIcon = false;
 
                 limitRange();
             }
