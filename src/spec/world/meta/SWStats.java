@@ -108,19 +108,21 @@ public class SWStats{
 
                     //mine
                     if(type instanceof RicochetBulletType b){
-                        sep(bt, "bullet.spec-j-ricochets");
+                        sep(bt, "@bullet.spec-j-ricochets");
                         sep(bt, Core.bundle.format("bullet.spec-j-ricochet-range", b.ricochetRange));
                     }
                     if(type instanceof ClusterArtilleryBulletType b){
+                        sep(bt, "@bullet.spec-j-explodes");
                         sep(bt, Core.bundle.format("bullet.spec-j-explosions", b.explosionAmount));
                         sep(bt, Core.bundle.format("bullet.spec-j-explosion-damage", b.explosionDamage));
                     }
                     if(type instanceof ClusterBulletType b){
+                        sep(bt, "@bullet.spec-j-explodes");
                         sep(bt, Core.bundle.format("bullet.spec-j-explosions", b.explosionAmount));
                         sep(bt, Core.bundle.format("bullet.spec-j-explosion-damage", b.explosionDamage));
                     }
                     if(type instanceof SpawnBulletType b){
-                        sep(bt, "bullet.spec-j-spawns");
+                        sep(bt, "@bullet.spec-j-spawns");
                         bt.row();
 
                         ammo(ObjectMap.of(t, b.spawnBullet), indent + 1).display(bt);

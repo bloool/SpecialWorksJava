@@ -22,9 +22,9 @@ public class RicochetBulletType extends BasicBulletType{
 
     @Override
     public void hitEntity(Bullet b, Hitboxc entity, float health){
-        if(entity instanceof Unit u){
+        if(entity instanceof Unit){
             Units.nearbyEnemies(b.team, b.x, b.y, ricochetRange, e -> {
-                if(e != null && Mathf.dst(u.x, u.y, e.x, e.y) > 0.1) b.rotation(b.angleTo(e));
+                if(e != null && !b.collided.contains(e.id)) b.rotation(b.angleTo(e));
             });
         }
         super.hitEntity(b, entity, health);

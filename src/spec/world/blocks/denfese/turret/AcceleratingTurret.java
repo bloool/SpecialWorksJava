@@ -6,6 +6,8 @@ import arc.util.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.world.blocks.defense.turrets.*;
+import mindustry.world.meta.*;
+import spec.world.meta.*;
 
 public class AcceleratingTurret extends ItemTurret{
 
@@ -17,6 +19,14 @@ public class AcceleratingTurret extends ItemTurret{
         super(name);
     }
 
+    @Override
+    public void setStats(){
+        super.setStats();
+
+        stats.remove(Stat.ammo);
+        stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
+    }
+
     public class AcceleratingTurretBuild extends ItemTurretBuild{
         public float accAmount; //making it a increasing value that gets added to local reload var instead of a decreasing global reload time var
 
@@ -24,7 +34,7 @@ public class AcceleratingTurret extends ItemTurret{
         public void displayBars(Table bars){
             super.displayBars(bars);
 
-            bars.add(new Bar("stat.accelerationAmount", Pal.ammo, () -> accAmount / accCap)).growX();
+            bars.add(new Bar("@stat.spec-j-accelerationAmount", Pal.ammo, () -> accAmount / accCap)).growX();
             bars.row();
         }
 

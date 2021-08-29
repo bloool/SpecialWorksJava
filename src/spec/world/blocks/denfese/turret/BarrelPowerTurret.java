@@ -9,12 +9,12 @@ import spec.world.meta.*;
 
 import static arc.Core.atlas;
 
-public class BarrelTurret extends ItemTurret{
+public class BarrelPowerTurret extends PowerTurret{
     public float barrelRecoilMultiplier = 1.5f;
     public boolean barrelTop = false;
     public TextureRegion turret, outline, barrel, barrelOutline, full;
 
-    public BarrelTurret(String name){
+    public BarrelPowerTurret(String name){
         super(name);
         outlineIcon = false;
     }
@@ -38,15 +38,7 @@ public class BarrelTurret extends ItemTurret{
         };
     }
 
-    @Override
-    public void setStats(){
-        super.setStats();
-
-        stats.remove(Stat.ammo);
-        stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
-    }
-
-    public class BarrelTurretBuild extends ItemTurretBuild{
+    public class BarrelTurretBuild extends PowerTurretBuild{
         public int top = barrelTop ? 1 : -1;
 
         @Override

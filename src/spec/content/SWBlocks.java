@@ -1,15 +1,20 @@
 package spec.content;
 
+import arc.graphics.*;
 import mindustry.content.*;
 import mindustry.ctype.*;
+import mindustry.entities.bullet.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.*;
+import mindustry.world.consumers.*;
 import mindustry.world.meta.*;
 import spec.entities.bullet.*;
 import spec.libs.*;
 import spec.world.blocks.denfese.turret.*;
+import spec.world.blocks.denfese.turret.SpatialSpawnerTurret.*;
 import spec.world.meta.*;
 
 import static mindustry.type.ItemStack.with;
@@ -21,6 +26,8 @@ public class SWBlocks implements ContentList{
     gale,
     //artillery
     shogun, ridge,
+    //star
+    antares,
 
     frog; //turret for testing
 
@@ -85,19 +92,11 @@ public class SWBlocks implements ContentList{
 
                 limitRange();
             }
-
-            @Override
-            public void setStats(){
-                super.setStats();
-
-                stats.remove(Stat.ammo);
-                stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
-            }
         };
 
         shogun = new BarrelTurret("shogun"){
             {
-                requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
+                requirements(Category.turret, with(Items.copper, 1000, Items.graphite, 800, Items.surgeAlloy, 400));
                 ammo(
                 Items.graphite, SWBullets.clusterLanceDense,
                 Items.pyratite, SWBullets.fireLanceDense,
@@ -124,16 +123,60 @@ public class SWBlocks implements ContentList{
 
                 limitRange();
             }
-
-            @Override
-            public void setStats(){
-                super.setStats();
-
-                stats.remove(Stat.ammo);
-                stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
-            }
         };
-        //end region
+        //end region artillery
+
+        //start region star
+        antares = new SpatialSpawnerTurret("antares"){{
+            requirements(Category.turret, with(Items.copper, 1200, Items.lead, 350, Items.graphite, 300, Items.surgeAlloy, 325, Items.silicon, 325));
+            shootEffect = Fx.shootBigSmoke2;
+            shootCone = 40f;
+            recoilAmount = 4f;
+            size = 4;
+            shootLength = 0;
+            shootShake = 2f;
+            range = 195f;
+            reloadTime = 180f;
+            powerUse = 17f;
+            shootSound = Sounds.plasmaboom;
+
+            spawnAmount = 2;
+            spawnEffect = Fx.absorb;
+            spawnInaccuracy = 3f;
+            spawnRange = 28f;
+            spawnRangeRand = 0.7f;
+            spawnReloadTime = 10;
+            spawnSound = Sounds.sap;
+
+            shootType = new ContinuousLaserBulletType(400){{
+                colors = new Color[]{Palf.starLight.cpy().a(0.4f), Palf.starMid, Color.white};
+                length = 250f;
+                hitEffect = Fx.hitMeltdown;
+                hitColor = Palf.starLight;
+                drawSize = 420f;
+                width = 8;
+
+                incendChance = 0.4f;
+                incendSpread = 5f;
+                incendAmount = 1;
+                ammoMultiplier = 1f;
+            }};
+
+            secondary = new LaserBulletType(140){{
+                colors = new Color[]{Palf.starLight.cpy().a(0.4f), Palf.starMid, Color.white};
+                hitEffect = Fx.hitLancer;
+                hitSize = 4;
+                lifetime = 16f;
+                drawSize = 400f;
+                length = 173f;
+                ammoMultiplier = 1f;
+            }};
+
+            health = 200 * size * size;
+            consumes.add(new ConsumeCoolant(0.5f)).update(false);
+        }};
+
+        //end region star
 
         gale = new ItemTurret("gale"){
             {
@@ -174,34 +217,38 @@ public class SWBlocks implements ContentList{
         };
 
         // turret made for testing purposes
-        frog = new AcceleratingTurret("frog"){{
+        frog = new SpatialSpawnerTurret("frog"){{
             requirements(Category.turret, with(Items.copper, 35), true);
-            ammo(
-            Items.copper, new AcceleratingBulletType(1f, 100){{
-                width = 8;
-                height = 24;
-                speedCap = 7f;
-                lifetime = 120;
-                drag = -0.01f;
-                homingRange = 120;
-                homingPower = 0.3f;
-                homingDelay = 30f;
-                trailLength = 5;
-            }}
-            );
 
             size = 4;
-            reloadTime = 120;
+            shots = 1;
+            reloadTime = 20;
             restitution = 0.03f;
             range = 400;
             ammoUseEffect = Fx.casing2;
             health = 250;
             inaccuracy = 2f;
             rotateSpeed = 10f;
+            shootType = new LaserBulletType(140){{
+                colors = new Color[]{Pal.lancerLaser.cpy().a(0.4f), Pal.lancerLaser, Color.white};
+                hitEffect = Fx.hitLancer;
+                hitSize = 4;
+                lifetime = 16f;
+                drawSize = 400f;
+                length = 173f;
+                ammoMultiplier = 1f;
+            }};
+            secondary = new LaserBulletType(140){{
+                colors = new Color[]{Pal.lancerLaser.cpy().a(0.4f), Pal.lancerLaser, Color.white};
+                hitEffect = Fx.hitLancer;
+                hitSize = 4;
+                lifetime = 16f;
+                drawSize = 400f;
+                length = 173f;
+                ammoMultiplier = 1f;
+            }};
 
             buildVisibility = BuildVisibility.sandboxOnly;
-
-            limitRange();
         }};
     }
 }
