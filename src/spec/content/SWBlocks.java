@@ -9,12 +9,10 @@ import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.*;
-import mindustry.world.consumers.*;
 import mindustry.world.meta.*;
 import spec.entities.bullet.*;
 import spec.libs.*;
 import spec.world.blocks.denfese.turret.*;
-import spec.world.blocks.denfese.turret.SpatialSpawnerTurret.*;
 import spec.world.draw.*;
 import spec.world.meta.*;
 
@@ -35,7 +33,7 @@ public class SWBlocks implements ContentList{
     @Override
     public void load(){
 
-        discharge = new AcceleratingTurret("discharge"){{
+        discharge = new SWItemTurret("discharge"){{
             requirements(Category.turret, with(Items.copper, 100, Items.graphite, 80, Items.titanium, 50));
             ammo(
             Items.thorium, new SpawnBulletType(4, 50){{
@@ -98,7 +96,7 @@ public class SWBlocks implements ContentList{
             }
         };
 
-        shogun = new BarrelTurret("shogun"){
+        shogun = new SWItemTurret("shogun"){
             {
                 requirements(Category.turret, with(Items.copper, 1000, Items.graphite, 800, Items.surgeAlloy, 400));
                 ammo(
@@ -125,13 +123,16 @@ public class SWBlocks implements ContentList{
                 health = 130 * size * size;
                 shootSound = Sounds.artillery;
 
+                barrelDrawer = new SingleBarrelDrawer();
+                outlineIcon = false;
+
                 limitRange();
             }
         };
         //end region artillery
 
         //start region star
-        antares = new SpatialSpawnerTurret("antares"){{
+        antares = new SWPowerTurret("antares"){{
             requirements(Category.turret, with(Items.copper, 1200, Items.lead, 350, Items.graphite, 300, Items.surgeAlloy, 325, Items.silicon, 325));
             shootEffect = Fx.shootBigSmoke2;
             shootCone = 40f;
@@ -177,7 +178,7 @@ public class SWBlocks implements ContentList{
             }};
 
             health = 200 * size * size;
-            consumes.add(new ConsumeCoolant(0.5f)).update(false);
+            shootDrawer = new ShineDrawer();
         }};
 
         //end region star
@@ -221,7 +222,7 @@ public class SWBlocks implements ContentList{
         };
 
         // turret made for testing purposes
-        frog = new SpatialSpawnerTurret("frog"){{
+        frog = new SWPowerTurret("frog"){{
             requirements(Category.turret, with(Items.copper, 35), true);
 
             size = 4;

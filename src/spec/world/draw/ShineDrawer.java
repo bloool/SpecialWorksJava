@@ -5,6 +5,7 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
 import mindustry.graphics.*;
+import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.Turret.*;
 import spec.libs.*;
 
@@ -20,10 +21,9 @@ public class ShineDrawer extends TurretDrawer{
         this.shineColor = shineColor;
     }
 
-    @Override
     public void draw(TurretBuild build){
         float shootVar = 0;
-        shootVar = Mathf.lerpDelta(shootVar, build.isShooting() ? 3 : 1, 0.06f);
+        shootVar = Mathf.lerpDelta(shootVar, isShooting(build) ? 3 : 1, 0.06f);
 
         float size = build.power.status <= 0 ? 0 : shineSize + Mathf.absin(Time.time, shineScl + 1, shineMag - 1) * shootVar * build.power.status;
         float angle = Mathf.absin(Time.time, shineScl, shineMag) + 43;

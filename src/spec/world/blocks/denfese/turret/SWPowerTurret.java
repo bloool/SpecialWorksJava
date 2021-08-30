@@ -10,11 +10,9 @@ import mindustry.entities.bullet.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.world.blocks.defense.turrets.*;
-import mindustry.world.meta.*;
 import spec.world.draw.*;
-import spec.world.meta.*;
 
-public class SWItemTurret extends ItemTurret{
+public class SWPowerTurret extends PowerTurret{
     public float accSpeed = 0;
     public int accCap = 20;
     public float coolDownSpeed = accSpeed / 5f;
@@ -34,7 +32,7 @@ public class SWItemTurret extends ItemTurret{
     public TurretDrawer shootDrawer = new TurretDrawer();
     public BaseBarrelDrawer barrelDrawer = new BaseBarrelDrawer();
 
-    public SWItemTurret(String name){ super(name); }
+    public SWPowerTurret(String name){ super(name); }
 
     @Override
     public void load(){
@@ -45,19 +43,11 @@ public class SWItemTurret extends ItemTurret{
     }
 
     @Override
-    public void setStats(){
-        super.setStats();
-
-        stats.remove(Stat.ammo);
-        stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
-    }
-
-    @Override
     public TextureRegion[] icons(){
         return barrelDrawer.icons(this, baseRegion);
     }
 
-    public class SWItemTurretBuild extends ItemTurretBuild{
+    public class SWItemTurretBuild extends PowerTurretBuild{
         public float accAmount; //making it a increasing value that gets added to local reload var instead of a decreasing global reload time var
         public float spawnerReload = 0;
 

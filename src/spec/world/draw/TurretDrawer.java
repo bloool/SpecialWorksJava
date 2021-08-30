@@ -3,10 +3,7 @@ package spec.world.draw;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import mindustry.world.*;
-import mindustry.world.blocks.defense.turrets.ItemTurret.*;
 import mindustry.world.blocks.defense.turrets.Turret.*;
-import mindustry.world.blocks.production.GenericCrafter.*;
-import spec.world.blocks.denfese.turret.SWItemTurret.*;
 
 /** An implementation of custom rendering behavior for a block.
  * This is used mostly for mods.
@@ -15,6 +12,10 @@ public class TurretDrawer{
     protected static final Rand rand = new Rand();
 
     /** Draws the block. */
+    public boolean isShooting(TurretBuild build){
+        return (build.isControlled() ? (build.unit != null && build.unit.isShooting()) : build.logicControlled() ? build.logicShooting : build.target != null);
+    }
+
     public void draw(TurretBuild build){
 
     }
