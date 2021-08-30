@@ -199,14 +199,14 @@ public class SWBlocks implements ContentList{
                 );
 
                 size = 3;
-                shootLength = 0.5f;
                 reloadTime = 30;
                 recoilAmount = 3;
                 range = 220;
                 shootCone = 15f;
                 ammoUseEffect = Fx.casing2;
                 health = 250;
-                inaccuracy = 2f;
+                shots = 2;
+                inaccuracy = 15f;
                 rotateSpeed = 10f;
 
                 limitRange();
