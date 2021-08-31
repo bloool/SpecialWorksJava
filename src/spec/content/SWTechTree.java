@@ -1,5 +1,3 @@
-// suppress inspection "Statement lambda can be replaced with expression lambda" for whole file
-
 package spec.content;
 
 import arc.struct.*;
@@ -38,6 +36,7 @@ public class SWTechTree implements ContentList{
 
         vanillaNode(scatter, () -> {
             node(gale, Seq.with(new SectorComplete(SectorPresets.saltFlats)));
+            node(razor);
         });
     }
 

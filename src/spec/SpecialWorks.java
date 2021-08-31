@@ -12,6 +12,7 @@ public class SpecialWorks extends Mod{
     private final ContentList[] content = {
         new SWBullets(),
         new SWBlocks(),
+        new SWTechTree()
     };
 
     public SpecialWorks(){

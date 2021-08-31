@@ -20,18 +20,56 @@ import static mindustry.type.ItemStack.with;
 
 public class SWBlocks implements ContentList{
     public static Block
-    discharge,
-    //deez
-    gale,
-    //artillery
+
+    //turrets
+    discharge, gale,
     shogun, ridge,
-    //star
-    antares,
+    antares, polaris,
+    razor, excalibur,
+
+    //
 
     frog; //turret for testing
 
     @Override
     public void load(){
+        gale = new ItemTurret("gale"){
+            {
+                requirements(Category.turret, with(Items.copper, 35), true);
+                ammo(
+                Items.metaglass, new RicochetBulletType(){{
+                    sprite = "large-bomb";
+                    width = 8;
+                    height = 32;
+                    shrinkY = 0;
+                    speed = 5;
+                    damage = 30;
+                    trailLength = 5;
+                }}
+                );
+
+                size = 3;
+                reloadTime = 30;
+                recoilAmount = 3;
+                range = 220;
+                shootCone = 15f;
+                ammoUseEffect = Fx.casing2;
+                health = 250;
+                shots = 2;
+                inaccuracy = 15f;
+                rotateSpeed = 10f;
+
+                limitRange();
+            }
+
+            @Override
+            public void setStats(){
+                super.setStats();
+
+                stats.remove(Stat.ammo);
+                stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
+            }
+        };
 
         discharge = new SWItemTurret("discharge"){{
             requirements(Category.turret, with(Items.copper, 100, Items.graphite, 80, Items.titanium, 50));
@@ -181,45 +219,67 @@ public class SWBlocks implements ContentList{
             shootDrawer = new ShineDrawer();
         }};
 
+        polaris = new SWPowerTurret("polaris"){{
+            requirements(Category.turret, with(Items.copper, 300, Items.lead, 200,Items.silicon, 325));
+            size = 2;
+            health = 300 * size * size;
+            shootType = new BulletType(){{
+                instantDisappear = true;
+                despawnEffect = Fx.none;
+                hitEffect = Fx.none;
+            }};
+
+            spawnConsumeAmmo = true;
+            spawnsAim = false;
+            spawnRangeInaccuracy = 45;
+            spawnAmount = 2;
+            spawnReloadTime = 20;
+            spawnRange = 10 * size;
+            spawnSound = Sounds.missile;
+            spawnEffect = Fx.absorb;
+            range = 180;
+            secondary = new AcceleratingBulletType(0.5f, 30){{
+                speedCap = 8;
+                lifetime = 50;
+                homingDelay = 20;
+                homingPower = 0.4f;
+                homingRange = 120;
+                drag = -0.1f;
+                hitEffect = Fx.absorb;
+                despawnHit = true;
+                trailLength = 5;
+                sprite = "large-bomb";
+                width = 10;
+                height = 20;
+            }};
+
+            reloadTime = spawnReloadTime;
+        }};
         //end region star
 
-        gale = new ItemTurret("gale"){
-            {
-                requirements(Category.turret, with(Items.copper, 35), true);
-                ammo(
-                Items.metaglass, new RicochetBulletType(){{
-                    sprite = "large-bomb";
-                    width = 8;
-                    height = 32;
-                    shrinkY = 0;
-                    speed = 5;
-                    damage = 30;
-                    trailLength = 5;
-                }}
-                );
+        //star region melee
+        razor = new SWPowerTurret("razor"){{
+            requirements(Category.turret, with(Items.lead, 80, Items.graphite, 30));
 
-                size = 3;
-                reloadTime = 30;
-                recoilAmount = 3;
-                range = 220;
-                shootCone = 15f;
-                ammoUseEffect = Fx.casing2;
-                health = 250;
-                shots = 2;
-                inaccuracy = 15f;
-                rotateSpeed = 10f;
+            size = 2;
+            reloadTime = 20f;
+            recoilAmount = -9f;
+            shootShake = 1f;
+            range = 35f;
+            restitution = 0.06f;
 
-                limitRange();
-            }
+            health = 130 * size * size;
+            shootSound = Sounds.release;
 
-            @Override
-            public void setStats(){
-                super.setStats();
+            barrelDrawer = new SingleBarrelDrawer(1.8f);
+            outlineIcon = false;
 
-                stats.remove(Stat.ammo);
-                stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
-            }
-        };
+            shootType = new RailBulletType(){{
+                length = range + 5;
+                damage = 160;
+                pierceDamageFactor = 0f;
+            }};
+        }};
 
         // turret made for testing purposes
         frog = new SWPowerTurret("frog"){{

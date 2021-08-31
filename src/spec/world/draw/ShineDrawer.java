@@ -22,10 +22,11 @@ public class ShineDrawer extends TurretDrawer{
     }
 
     public void draw(TurretBuild build){
-        float shootVar = 0;
-        shootVar = Mathf.lerpDelta(shootVar, isShooting(build) ? 3 : 1, 0.06f);
+        float heatMultiplier = 0;
+        float force = (build.heat * 3 + 1) * build.power.status;
+        heatMultiplier = Mathf.lerpDelta(heatMultiplier, force, 0.06f);
 
-        float size = build.power.status <= 0 ? 0 : shineSize + Mathf.absin(Time.time, shineScl + 1, shineMag - 1) * shootVar * build.power.status;
+        float size = build.power.status <= 0 ? 0 : shineSize + Mathf.absin(Time.time, shineScl + 1, shineMag - 1) * heatMultiplier;
         float angle = Mathf.absin(Time.time, shineScl, shineMag) + 43;
 
         Draw.z(Layer.effect);
