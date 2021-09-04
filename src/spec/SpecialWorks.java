@@ -10,6 +10,7 @@ import spec.content.*;
 
 public class SpecialWorks extends Mod{
     private final ContentList[] content = {
+        new SWItems(),
         new SWBullets(),
         new SWBlocks(),
         new SWTechTree()

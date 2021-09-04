@@ -67,7 +67,7 @@ public class SWItemTurret extends ItemTurret{
         super.setStats();
 
         stats.remove(Stat.ammo);
-        stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
+        stats.add(Stat.ammo, SWBulletsStats.ammo(ammoTypes));
     }
 
     @Override

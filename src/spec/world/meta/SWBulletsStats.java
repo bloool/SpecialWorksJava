@@ -17,7 +17,7 @@ import spec.entities.bullet.*;
 
 import static mindustry.Vars.tilesize;
 
-public class SWStats{
+public class SWBulletsStats{
     public static <T extends UnlockableContent> StatValue ammo(ObjectMap<T, BulletType> map){
         return ammo(map, 0);
     }

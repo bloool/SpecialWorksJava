@@ -9,9 +9,11 @@ import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.*;
+import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
 import spec.entities.bullet.*;
 import spec.libs.*;
+import spec.world.blocks.denfese.*;
 import spec.world.blocks.denfese.turret.*;
 import spec.world.draw.*;
 import spec.world.meta.*;
@@ -23,16 +25,24 @@ public class SWBlocks implements ContentList{
 
     //turrets
     discharge, gale,
+
     shogun, ridge,
+
     antares, polaris,
+
     razor, excalibur,
 
-    //
+    //crafters
+    laminaPress,
+
+    //effect
+    anchor,
 
     frog; //turret for testing
 
     @Override
     public void load(){
+        //region turrets
         gale = new ItemTurret("gale"){
             {
                 requirements(Category.turret, with(Items.copper, 35), true);
@@ -67,7 +77,7 @@ public class SWBlocks implements ContentList{
                 super.setStats();
 
                 stats.remove(Stat.ammo);
-                stats.add(Stat.ammo, SWStats.ammo(ammoTypes));
+                stats.add(Stat.ammo, SWBulletsStats.ammo(ammoTypes));
             }
         };
 
@@ -101,7 +111,7 @@ public class SWBlocks implements ContentList{
             limitRange();
         }};
 
-        //start region artillery
+        //region artillery
         ridge = new SWItemTurret("ridge"){
             {
                 requirements(Category.turret, with(Items.copper, 150, Items.graphite, 135, Items.titanium, 60));
@@ -167,9 +177,9 @@ public class SWBlocks implements ContentList{
                 limitRange();
             }
         };
-        //end region artillery
+        //endregion artillery
 
-        //start region star
+        //region star
         antares = new SWPowerTurret("antares"){{
             requirements(Category.turret, with(Items.copper, 1200, Items.lead, 350, Items.graphite, 300, Items.surgeAlloy, 325, Items.silicon, 325));
             shootEffect = Fx.shootBigSmoke2;
@@ -255,9 +265,9 @@ public class SWBlocks implements ContentList{
 
             reloadTime = spawnReloadTime;
         }};
-        //end region star
+        //endregion star
 
-        //star region melee
+        //region melee
         razor = new SWPowerTurret("razor"){{
             requirements(Category.turret, with(Items.lead, 80, Items.graphite, 30));
 
@@ -281,6 +291,7 @@ public class SWBlocks implements ContentList{
             }};
         }};
 
+        //endregion star
         // turret made for testing purposes
         frog = new SWPowerTurret("frog"){{
             requirements(Category.turret, with(Items.copper, 35), true);
@@ -315,5 +326,42 @@ public class SWBlocks implements ContentList{
 
             buildVisibility = BuildVisibility.sandboxOnly;
         }};
+
+        //endregion
+
+        //region crafters
+
+        laminaPress = new GenericCrafter("kiln"){{
+            requirements(Category.crafting, with(Items.metaglass, 400, Items.lead, 180, Items.copper, 220, Items.graphite, 120));
+            craftEffect = Fx.smeltsmoke;
+            outputItem = new ItemStack(SWItems.laminaglass, 1);
+            craftTime = 40f;
+            size = 4;
+            hasPower = hasItems = true;
+            ambientSound = Sounds.smelter;
+            ambientSoundVolume = 0.07f;
+
+            consumes.liquid(Liquids.water, 0.4f);
+            consumes.items(with(Items.coal, 1, Items.metaglass, 2));
+            consumes.power(1f);
+        }};
+
+        //endregion
+
+        //region effect
+
+        anchor = new AnchorProjector("anchor"){{
+            requirements(Category.effect, with(Items.lead, 100, Items.titanium, 25, Items.silicon, 40));
+            consumes.power(1.5f);
+            size = 2;
+            breakRange = 90f;
+            force = breakRange;
+            phaseColor = Items.phaseFabric.color;
+            phaseBoost = 40f;
+            phaseRangeBoost = 20f;
+            consumes.item(Items.phaseFabric).boost();
+        }};
+
+        //endregion
     }
 }

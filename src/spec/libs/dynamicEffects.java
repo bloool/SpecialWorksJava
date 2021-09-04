@@ -37,4 +37,12 @@ public class dynamicEffects{
     }
 
 
+    public static Effect implodeWave(float rad, Color waveColor, float width, float lifetime, float clipsize){
+        return new Effect(lifetime, clipsize, e -> {
+            Lines.stroke(width * e.fin(), waveColor);
+            Lines.circle(e.x, e.y, rad * e.fout());
+        });
+    }
+
+    public static Effect implodeWave(float rad, Color waveColor){ return implodeWave(rad, waveColor, 6, 20, rad); }
 }
