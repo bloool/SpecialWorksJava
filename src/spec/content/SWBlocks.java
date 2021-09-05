@@ -9,6 +9,7 @@ import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.*;
+import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
 import spec.entities.bullet.*;
@@ -23,6 +24,9 @@ import static mindustry.type.ItemStack.with;
 public class SWBlocks implements ContentList{
     public static Block
 
+    //environment
+    tree, treeBig,
+
     //turrets
     discharge, gale,
 
@@ -35,10 +39,13 @@ public class SWBlocks implements ContentList{
     //crafters
     laminaPress,
 
+    //transport
+    plastPayloadConveyor, plastPayloadRouter,
+
     //effect
     anchor,
 
-    frog; //turret for testing
+    ferret; //turret for testing
 
     @Override
     public void load(){
@@ -293,7 +300,7 @@ public class SWBlocks implements ContentList{
 
         //endregion star
         // turret made for testing purposes
-        frog = new SWPowerTurret("frog"){{
+        ferret = new SWPowerTurret("ferret"){{
             requirements(Category.turret, with(Items.copper, 35), true);
 
             size = 4;
@@ -344,6 +351,22 @@ public class SWBlocks implements ContentList{
             consumes.liquid(Liquids.water, 0.4f);
             consumes.items(with(Items.coal, 1, Items.metaglass, 2));
             consumes.power(1f);
+        }};
+
+        //endregion
+
+        //region transport
+
+        plastPayloadConveyor = new PayloadConveyor("payload-conveyor"){{
+            requirements(Category.units, with(Items.graphite, 10, Items.copper, 20));
+            size = 2;
+            canOverdrive = false;
+        }};
+
+        plastPayloadRouter = new PayloadRouter("payload-router"){{
+            requirements(Category.units, with(Items.graphite, 15, Items.copper, 20));
+            size = 2;
+            canOverdrive = false;
         }};
 
         //endregion
