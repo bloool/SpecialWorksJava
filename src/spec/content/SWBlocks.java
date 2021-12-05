@@ -36,6 +36,8 @@ public class SWBlocks implements ContentList{
 
     razor, excalibur,
 
+    spawn,
+
     //crafters
     laminaPress,
 
@@ -299,6 +301,23 @@ public class SWBlocks implements ContentList{
         }};
 
         //endregion star
+
+        //region sentry spawners
+
+        spawn = new ItemTurret("spawn"){{
+            requirements(Category.turret, with(Items.copper, 35), true);
+
+            size = 3;
+            reloadTime = 60;
+            range = 300;
+
+            rotateSpeed = 0;
+            inaccuracy = 360;
+            shootLength = 0;
+        }};
+
+        //endregion
+
         // turret made for testing purposes
         ferret = new SWPowerTurret("ferret"){{
             requirements(Category.turret, with(Items.copper, 35), true);

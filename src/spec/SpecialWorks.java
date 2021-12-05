@@ -14,7 +14,8 @@ public class SpecialWorks extends Mod{
         new SWItems(),
         new SWBullets(),
         new SWBlocks(),
-        new SWTechTree()
+        new SWTechTree(),
+        new SWSentries()
     };
 
     public SpecialWorks(){
