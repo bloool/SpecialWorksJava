@@ -12,6 +12,7 @@ import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
+import spec.entities.*;
 import spec.entities.bullet.*;
 import spec.libs.*;
 import spec.world.blocks.denfese.*;
@@ -239,7 +240,7 @@ public class SWBlocks implements ContentList{
         }};
 
         polaris = new SWPowerTurret("polaris"){{
-            requirements(Category.turret, with(Items.copper, 300, Items.lead, 200,Items.silicon, 325));
+            requirements(Category.turret, with(Items.copper, 300, Items.lead, 200, Items.silicon, 325));
             size = 2;
             health = 300 * size * size;
             shootType = new BulletType(){{
@@ -304,14 +305,20 @@ public class SWBlocks implements ContentList{
 
         //region sentry spawners
 
-        spawn = new ItemTurret("spawn"){{
+        spawn = new SWItemTurret("spawn"){{
             requirements(Category.turret, with(Items.copper, 35), true);
+            ammo(
+            Items.copper, new Sentry(1000, 5){{
+                name = "copper-sentry";
+            }}
+            );
 
             size = 3;
             reloadTime = 60;
             range = 300;
 
             rotateSpeed = 0;
+            shootCone = 360;
             inaccuracy = 360;
             shootLength = 0;
         }};

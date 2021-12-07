@@ -1,6 +1,5 @@
 package spec.world.draw;
 
-import arc.*;
 import arc.graphics.g2d.*;
 import arc.util.*;
 import mindustry.graphics.*;
@@ -21,6 +20,7 @@ public class BaseBarrelDrawer extends TurretDrawer{
         Drawf.shadow(region, build.x + Tmp.v1.x - elevation, build.y + Tmp.v1.y - elevation, build.rotation - 90);
         Draw.rect(region, build.x + Tmp.v1.x, build.y + Tmp.v1.y, build.rotation - 90);
     }
+
     public TextureRegion[] icons(Block block, TextureRegion baseRegion){
         return new TextureRegion[]{
         baseRegion,

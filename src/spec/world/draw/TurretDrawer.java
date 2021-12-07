@@ -5,9 +5,11 @@ import arc.math.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.Turret.*;
 
-/** An implementation of custom rendering behavior for a block.
+/**
+ * An implementation of custom rendering behavior for a block.
  * This is used mostly for mods.
- * And modified to work on my item turret class because anuke made it so it only works with generic crafters*/
+ * And modified to work on my item turret class because anuke made it so it only works with generic crafters
+ */
 public class TurretDrawer{
     protected static final Rand rand = new Rand();
 

@@ -10,7 +10,6 @@ public class Palf{
 
     starLight = Color.valueOf("ffe18f"),
     starMid = Color.valueOf("ffc999"),
-    starDark = Color.valueOf("de9458")
-    ;
+    starDark = Color.valueOf("de9458");
 }
 

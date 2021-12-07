@@ -44,5 +44,7 @@ public class dynamicEffects{
         });
     }
 
-    public static Effect implodeWave(float rad, Color waveColor){ return implodeWave(rad, waveColor, 6, 20, rad); }
+    public static Effect implodeWave(float rad, Color waveColor){
+        return implodeWave(rad, waveColor, 6, 20, rad);
+    }
 }

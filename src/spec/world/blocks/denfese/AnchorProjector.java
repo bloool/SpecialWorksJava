@@ -19,7 +19,7 @@ import spec.libs.*;
 import spec.world.draw.*;
 
 import static arc.Core.atlas;
-import static mindustry.Vars.*;
+import static mindustry.Vars.tilesize;
 
 public class AnchorProjector extends Block{
     public final int timerUse = timers++;
@@ -82,7 +82,8 @@ public class AnchorProjector extends Block{
 
     public class AnchorBuild extends Building implements Ranged{
         float phaseHeat = 0;
-        public @Nullable Posc target;
+        public @Nullable
+        Posc target;
         public Vec2 targetPos = new Vec2();
         public float targetDst;
 

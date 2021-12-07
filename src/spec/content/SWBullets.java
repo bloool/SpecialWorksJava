@@ -12,12 +12,14 @@ public class SWBullets implements ContentList{
     clusterLance, clusterLanceDense,
     fireLance, fireLanceDense,
     pierceLance, pierceLanceDense,
-    lightLance, lightLanceDense;
+    lightLance, lightLanceDense,
+
+    copperSentry;
 
     @Override
     public void load(){
 
-        //normal artillery
+        //region normal artillery
         clusterLance = new ClusterBulletType(5f, 200f){{
             knockback = 5f;
             lifetime = 80f;
@@ -91,8 +93,9 @@ public class SWBullets implements ContentList{
             explosionEffect = despawnEffect;
         }};
 
+        //endregion
 
-        //dense artillery
+        //region dense artillery
         clusterLanceDense = new ClusterBulletType(5f, 200f){{
             knockback = 3f;
             lifetime = 80f;
@@ -166,5 +169,11 @@ public class SWBullets implements ContentList{
             explosionRadius = 25f * 0.75f;
             explosionEffect = despawnEffect;
         }};
+        //endregion
+
+        //region sentries
+
+
+        //endregion
     }
 }

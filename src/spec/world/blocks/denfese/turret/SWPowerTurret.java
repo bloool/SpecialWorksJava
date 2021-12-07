@@ -31,19 +31,19 @@ public class SWPowerTurret extends PowerTurret{
     public float spawnRangeInaccuracy = 180f;
     /** A multiplier that gets applied to the spawn range */
     public float spawnRangeRand = 0.5f;
-    /** The inaccuracy that each bullet has relative to the turret rotation, not to be confounded with spawnRangeInaccuracy that changes the location rather the rotation  */
+    /** The inaccuracy that each bullet has relative to the turret rotation, not to be confounded with spawnRangeInaccuracy that changes the location rather the rotation */
     public float spawnInaccuracy = inaccuracy;
     /** The velocity inaccuracy of each bullet */
     public float spawnVelocityInaccuracy = velocityInaccuracy;
-    /** Whether the spawned bullets aim toward the target or in the same direction as the turret*/
+    /** Whether the spawned bullets aim toward the target or in the same direction as the turret */
     public boolean spawnsAim = true;
     /** The amount of bullets to spawn at each interval */
     public int spawnAmount = shots;
-    /** If the turret should only shoot the secondary, this will make them consume ammo*/
+    /** If the turret should only shoot the secondary, this will make them consume ammo */
     public boolean onlySpawns = false;
-    /** If each spawns consumes ammo*/
+    /** If each spawns consumes ammo */
     public boolean spawnConsumeAmmo = false;
-    /** The bullet that gets spawned*/
+    /** The bullet that gets spawned */
     public BulletType secondary = null;
     public Effect spawnEffect = shootEffect;
     public Sound spawnSound = shootSound;
@@ -51,7 +51,9 @@ public class SWPowerTurret extends PowerTurret{
     public TurretDrawer shootDrawer = new TurretDrawer();
     public BaseBarrelDrawer barrelDrawer = new BaseBarrelDrawer();
 
-    public SWPowerTurret(String name){ super(name); }
+    public SWPowerTurret(String name){
+        super(name);
+    }
 
     @Override
     public void load(){

@@ -1,6 +1,5 @@
 package spec.entities.bullet;
 
-import arc.math.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;

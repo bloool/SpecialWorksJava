@@ -10,12 +10,11 @@ import spec.content.*;
 
 public class SpecialWorks extends Mod{
     private final ContentList[] content = {
-        new SWStatusEffects(),
-        new SWItems(),
-        new SWBullets(),
-        new SWBlocks(),
-        new SWTechTree(),
-        new SWSentries()
+    new SWStatusEffects(),
+    new SWItems(),
+    new SWBullets(),
+    new SWBlocks(),
+    new SWTechTree()
     };
 
     public SpecialWorks(){

@@ -14,13 +14,15 @@ public class SWStatusEffects implements ContentList{
 
     @Override
     public void load(){
-        magnetized = new StatusEffect("magnetized"){{
-            effect = new Effect(30, e -> {
-                Draw.color();
-                Fill.circle(e.x, e.y, e.fout() * 5);
-            });
+        magnetized = new StatusEffect("magnetized"){
+            {
+                effect = new Effect(30, e -> {
+                    Draw.color();
+                    Fill.circle(e.x, e.y, e.fout() * 5);
+                });
 
-        }
+            }
+
             @Override
             public void update(Unit u, float t){
                 super.update(u, t);
@@ -28,7 +30,7 @@ public class SWStatusEffects implements ContentList{
                 float homingPower = 0.2f;
                 @Nullable Seq<Bullet> target;
 
-                target = Groups.bullet.intersect(u.x - range, u.y - range, range*2, range*2);
+                target = Groups.bullet.intersect(u.x - range, u.y - range, range * 2, range * 2);
                 target.forEach(b -> b.vel.setAngle(Angles.moveToward(b.rotation(), b.angleTo(u), homingPower * Time.delta * 50f)));
             }
         };

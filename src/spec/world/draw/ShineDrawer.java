@@ -5,7 +5,6 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
 import mindustry.graphics.*;
-import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.Turret.*;
 import spec.libs.*;
 
@@ -33,14 +32,15 @@ public class ShineDrawer extends TurretDrawer{
 
         Draw.color(shineColor);
         for(int i = 0; i < 4; i++){
-            Drawf.tri(build.x, build.y, size/4, size, build.rotation + angle + i*90);
+            Drawf.tri(build.x, build.y, size / 4, size, build.rotation + angle + i * 90);
         }
 
         Draw.color(Color.white);
         for(int i = 0; i < 4; i++){
-            Drawf.tri(build.x, build.y, size/4/2, size/2, build.rotation + angle + i*90);
+            Drawf.tri(build.x, build.y, size / 4 / 2, size / 2, build.rotation + angle + i * 90);
         }
     }
+
     @Override
     public void drawLight(TurretBuild build){
         Drawf.light(build.team, build.x, build.y, (lightRadius + Mathf.absin(lightSinScl, lightSinMag)) * build.block.size, shineColor, lightAlpha);

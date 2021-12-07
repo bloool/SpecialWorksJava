@@ -2,16 +2,13 @@ package spec.content;
 
 import arc.struct.*;
 import mindustry.content.*;
-import mindustry.content.TechTree.*;
 import mindustry.ctype.*;
 import mindustry.game.Objectives.*;
 import mindustry.type.*;
 import mindustry.world.*;
 
 import static mindustry.content.Blocks.*;
-import static mindustry.content.Items.*;
-import static mindustry.content.TechTree.*;
-import static mindustry.content.UnitTypes.*;
+import static mindustry.content.TechTree.TechNode;
 import static spec.content.SWBlocks.*;
 
 public class SWTechTree implements ContentList{
@@ -61,15 +58,18 @@ public class SWTechTree implements ContentList{
     }
 
     private static void node(UnlockableContent content, ItemStack[] requirements, Seq<Objective> objectives){
-        node(content, requirements, objectives, () -> {});
+        node(content, requirements, objectives, () -> {
+        });
     }
 
     private static void node(UnlockableContent content, Seq<Objective> objectives){
-        node(content, content.researchRequirements(), objectives, () -> {});
+        node(content, content.researchRequirements(), objectives, () -> {
+        });
     }
 
     private static void node(UnlockableContent content, ItemStack[] requirements){
-        node(content, requirements, Seq.with(), () -> {});
+        node(content, requirements, Seq.with(), () -> {
+        });
     }
 
     private static void node(UnlockableContent content, ItemStack[] requirements, Runnable children){
@@ -85,7 +85,8 @@ public class SWTechTree implements ContentList{
     }
 
     private static void node(UnlockableContent block){
-        node(block, () -> {});
+        node(block, () -> {
+        });
     }
 
     private static void nodeProduce(UnlockableContent content, Seq<Objective> objectives, Runnable children){
@@ -93,7 +94,8 @@ public class SWTechTree implements ContentList{
     }
 
     private static void nodeProduce(UnlockableContent content, Seq<Objective> objectives){
-        nodeProduce(content, objectives, () -> {});
+        nodeProduce(content, objectives, () -> {
+        });
     }
 
     private static void nodeProduce(UnlockableContent content, Runnable children){
@@ -101,6 +103,7 @@ public class SWTechTree implements ContentList{
     }
 
     private static void nodeProduce(UnlockableContent content){
-        nodeProduce(content, Seq.with(), () -> {});
+        nodeProduce(content, Seq.with(), () -> {
+        });
     }
 }

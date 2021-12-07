@@ -1,7 +1,5 @@
 package spec.world.draw;
 
-import arc.*;
-import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.util.*;
 import mindustry.graphics.*;
