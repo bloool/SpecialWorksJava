@@ -1,8 +1,11 @@
 package spec.content;
 
 import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
 import mindustry.content.*;
 import mindustry.ctype.*;
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
@@ -39,6 +42,8 @@ public class SWBlocks implements ContentList{
 
     spawn,
 
+    orbit, impaler, solaris,
+
     //crafters
     laminaPress,
 
@@ -53,6 +58,8 @@ public class SWBlocks implements ContentList{
     @Override
     public void load(){
         //region turrets
+
+        //region misc
         gale = new ItemTurret("gale"){
             {
                 requirements(Category.turret, with(Items.copper, 35), true);
@@ -120,6 +127,8 @@ public class SWBlocks implements ContentList{
 
             limitRange();
         }};
+
+        //endregion
 
         //region artillery
         ridge = new SWItemTurret("ridge"){
@@ -235,8 +244,11 @@ public class SWBlocks implements ContentList{
                 ammoMultiplier = 1f;
             }};
 
-            health = 200 * size * size;
-            shootDrawer = new ShineDrawer();
+            health = 300 * size * size;
+            shootDrawer = new ShineDrawer(){{
+                shineSize = 20f;
+                angleOffset = 45f;
+            }};
         }};
 
         polaris = new SWPowerTurret("polaris"){{
@@ -256,7 +268,13 @@ public class SWBlocks implements ContentList{
             spawnReloadTime = 20;
             spawnRange = 10 * size;
             spawnSound = Sounds.missile;
-            spawnEffect = Fx.absorb;
+            spawnEffect = new Effect(30, e-> {
+                Draw.color(Palf.starLight);
+                e.rotation += e.fout() * 100 * Mathf.randomSeedRange(e.id, 0.5f);
+                for(int i = 0; i < 4; i++){
+                    Drawf.tri(e.x, e.y, 5f * e.fout(), 10f, e.rotation + 45 + 90 * i);
+                }
+            });
             range = 180;
             secondary = new AcceleratingBulletType(0.5f, 30){{
                 speedCap = 8;
@@ -268,6 +286,7 @@ public class SWBlocks implements ContentList{
                 hitEffect = Fx.absorb;
                 despawnHit = true;
                 trailLength = 5;
+                trailColor = Palf.starMid;
                 sprite = "large-bomb";
                 width = 10;
                 height = 20;
@@ -276,6 +295,80 @@ public class SWBlocks implements ContentList{
             reloadTime = spawnReloadTime;
         }};
         //endregion star
+
+        //region orb
+
+        orbit = new OrbTurret("orbit"){{
+            requirements(Category.turret, with(Items.copper, 35), true);
+
+            size = 2;
+            range = 100f;
+            rotateSpeed = 10f;
+            health = 200 * size * size;
+
+            shootDrawer = new ShineDrawer(Palf.neuronLight){{
+                shineSize = 12f;
+                spikeAmount = 0;
+            }};
+
+            orbType = new OrbBulletType(1f, 16f){{
+                orbSize = 3f;
+                trailLength = 5;
+                trailWidth = 3f;
+                orbColor = trailColor = Palf.neuronLight;
+            }};
+        }};
+
+        impaler = new OrbTurret("impaler"){{
+            requirements(Category.turret, with(Items.copper, 35), true);
+
+            size = 3;
+            range = 200f;
+            rotateSpeed = 10f;
+            orbAmount = 3;
+            health = 200 * size * size;
+
+            shootDrawer = new ShineDrawer(Palf.neuronLight){{
+                shineSize = 18f;
+                spikeAmount = 3;
+            }};
+
+            orbType = new OrbBulletType(1.8f, 12f){{
+                orbSize = 2.5f;
+                trailLength = 8;
+                trailWidth = 3f;
+                orbColor = trailColor = Palf.neuronLight;
+                sprite = "large-bomb";
+                width = 8f;
+                height = 25f;
+            }};
+        }};
+
+        solaris = new OrbTurret("solaris"){{
+            requirements(Category.turret, with(Items.copper, 35), true);
+
+            size = 4;
+            range = 300f;
+            rotateSpeed = 10f;
+            orbAmount = 2;
+            health = 200 * size * size;
+
+            shootDrawer = new ShineDrawer(Palf.neuronLight){{
+                shineSize = 24f;
+                spikeAmount = 6;
+                rotatingShine = true;
+            }};
+
+            orbType = new OrbBulletType(1.5f, 120f){{
+                orbSize = 16f;
+                trailLength = 6;
+                trailWidth = 3f;
+                orbColor = trailColor = Palf.neuronDark;
+                shiny = true;
+            }};
+        }};
+
+        //endregion
 
         //region melee
         razor = new SWPowerTurret("razor"){{
@@ -301,7 +394,7 @@ public class SWBlocks implements ContentList{
             }};
         }};
 
-        //endregion star
+        //endregion melee
 
         //region sentry spawners
 
@@ -326,35 +419,18 @@ public class SWBlocks implements ContentList{
         //endregion
 
         // turret made for testing purposes
-        ferret = new SWPowerTurret("ferret"){{
+        ferret = new OrbTurret("ferret"){{
             requirements(Category.turret, with(Items.copper, 35), true);
 
             size = 4;
-            shots = 1;
-            reloadTime = 20;
-            restitution = 0.03f;
-            range = 400;
-            ammoUseEffect = Fx.casing2;
-            health = 250;
-            inaccuracy = 2f;
+            range = 200f;
             rotateSpeed = 10f;
-            shootType = new LaserBulletType(140){{
-                colors = new Color[]{Pal.lancerLaser.cpy().a(0.4f), Pal.lancerLaser, Color.white};
-                hitEffect = Fx.hitLancer;
-                hitSize = 4;
-                lifetime = 16f;
-                drawSize = 400f;
-                length = 173f;
-                ammoMultiplier = 1f;
-            }};
-            secondary = new LaserBulletType(140){{
-                colors = new Color[]{Pal.lancerLaser.cpy().a(0.4f), Pal.lancerLaser, Color.white};
-                hitEffect = Fx.hitLancer;
-                hitSize = 4;
-                lifetime = 16f;
-                drawSize = 400f;
-                length = 173f;
-                ammoMultiplier = 1f;
+            orbAmount = 3;
+
+            orbType = new OrbBulletType(2f, 50f){{
+                trailLength = 5;
+                trailWidth = 3f;
+                trailColor = Pal.lancerLaser;
             }};
 
             buildVisibility = BuildVisibility.sandboxOnly;

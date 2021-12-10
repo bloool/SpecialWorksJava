@@ -68,7 +68,7 @@ public class SWPowerTurret extends PowerTurret{
         return barrelDrawer.icons(this, baseRegion);
     }
 
-    public class SWItemTurretBuild extends PowerTurretBuild{
+    public class SWPowerTurretBuild extends PowerTurretBuild{
         public float accAmount; //making it a increasing value that gets added to local reload var instead of a decreasing global reload time var
         public float spawnerReload = 0;
 
