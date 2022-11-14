@@ -17,6 +17,6 @@ description: "my mod, special works, now on java because i'm learning it"
 version: 1.0
 
 #the minimum game build required to run this mod
-minGameVersion: 141
+minGameVersion: 136
 
 java: true
